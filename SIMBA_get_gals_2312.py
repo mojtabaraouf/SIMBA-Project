@@ -3,18 +3,18 @@
 #the restoring force calculated for galaxies up to 2 Re:  g.radii.totalhalfmass.
 #The truncation radii estimete when the ram pressure and restoring force are equal with 0.5dex difference
 
-import matplotlib
+# import matplotlib
 # import pylab as plt
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-import scipy.ndimage
+# import matplotlib.pyplot as plt
+# import matplotlib.patches as patches
+# import scipy.ndimage
 import numpy as np
 from numpy import ma
-from matplotlib import colors, ticker, cm
-from matplotlib.mlab import bivariate_normal
-from matplotlib.colors import LogNorm
-from scipy.ndimage import gaussian_filter
-from mpl_toolkits import mplot3d
+# from matplotlib import colors, ticker, cm
+# from matplotlib.mlab import bivariate_normal
+# from matplotlib.colors import LogNorm
+# from scipy.ndimage import gaussian_filter
+# from mpl_toolkits import mplot3d
 import h5py
 import numpy as np
 import os
@@ -77,9 +77,9 @@ for snap in range(151,150,-1): #in range(150,151):
     # snapfile = '/home/rad/data/m50n512/s50fof6d/snap_m50n512_'+str(snap).zfill(3)+'.hdf5'
     # caesarfile = '/home/rad/data/m50n512/s50j7k/Groups/m50n512_'+str(snap).zfill(3)+'.hdf5'
 #In KASI
-    snapfile = './SIMBA/SIMBA/snap_m50n512_'+str(snap).zfill(3)+'.hdf5'
+    snapfile = '/data2/SIMBA/SIMBA/snap_m50n512_'+str(snap).zfill(3)+'.hdf5'
     # caesarfile = '/media/mraouf/mraouf2/Groups/m50n512_'+str(snap).zfill(3)+'.hdf5'
-    caesarfile = './SIMBA/Groups/m50n512_'+str(snap).zfill(3)+'.hdf5'
+    caesarfile = '/data2/SIMBA/Groups/m50n512_'+str(snap).zfill(3)+'.hdf5'
 
 # load in input file
     #sim = caesar.load(caesarfile,LoadHalo=False)  # load without halos
@@ -91,7 +91,7 @@ for snap in range(151,150,-1): #in range(150,151):
     #print 'boxsize',bsize
 
     redshift = np.round(sim.simulation.redshift,decimals=2)
-    print 'redshift:',redshift
+    print('redshift:',redshift)
 
     h = sim.simulation.hubble_constant
     #print 'h:',h
@@ -200,7 +200,7 @@ for snap in range(151,150,-1): #in range(150,151):
 
     for g in gals:
        #if  g.GroupID == 638:
-        # print 'ii & halo count:',ii,len(halos)
+        print('ii & halo count:',ii,len(halos))
         velgas = np.array([pvel_gas[k] for k in g.halo.glist  if (gas_select[k])])
         mgas = np.array([pmass_gas[k] for k in g.halo.glist  if (gas_select[k])])
         posgas = np.array([ppos_gas[k] for k in g.halo.glist  if (gas_select[k])])
@@ -238,7 +238,7 @@ for snap in range(151,150,-1): #in range(150,151):
         densgas_h = np.array([gnh[k] for k in g.halo.glist  if (gas_select_h[k])])
 
         if ((len(mgas) > 0)):
-            print 'snap & ii & halo count:',snap,ii,len(halos)
+            print('snap & ii & halo count:',snap,ii,len(halos))
 
             galPosx =  g.pos.d[0]
             galPosy =  g.pos.d[1]
@@ -473,13 +473,13 @@ for snap in range(151,150,-1): #in range(150,151):
                     rtrunc = (i)
                     gap = ((np.log10(rami*1e10) - np.log10(ram*1e10)))
                     ramii = (rami)
-                    print '**********Rtrunc',rtrunc/rsize_h,'Ram',np.log10(ram*1e10),'gap', gap, 'Frest',np.log10(rami*1e10)
+                    print('**********Rtrunc',rtrunc/rsize_h,'Ram',np.log10(ram*1e10),'gap', gap, 'Frest',np.log10(rami*1e10))
                     break
               else:
                     rtrunc = (0.0)
                     gap = ((np.log10(rami*1e10) - np.log10(ram*1e10)))
                     ramii = (rami)
-            print 'Rtrunc',rtrunc/rsize_h,'Ram',np.log10(ram*1e10),'gap', gap, 'Frest',np.log10(rami*1e10)
+            print('Rtrunc',rtrunc/rsize_h,'Ram',np.log10(ram*1e10),'gap', gap, 'Frest',np.log10(rami*1e10))
             # zzz = np.array([rtrunc_all,gap,np.log10(ramii)+10]).T
 
             # if len(zzz[:,1]) > 0:
@@ -744,7 +744,7 @@ for snap in range(151,150,-1): #in range(150,151):
         snap1.append(snap)
         Temp.append(np.log10(np.median(gasTemp)))
         # print '------- ramp, gascount,Macc_c,Macc_h:',ram*1e10,ngas, Macc_c*1e-9, Macc_h*1e-9
-        print galID[ii],'--, ramp1, rtrunc, rsize,rvir, cent,Fr_vir,Fr_re',np.log10(ram*1e10), rtrunc,rsize,radii_h, galcen[ii],np.log10(frestor_vir*1e10),np.log10(frestor_re*1e10)
+        print(galID[ii],'--, ramp1, rtrunc, rsize,rvir, cent,Fr_vir,Fr_re',np.log10(ram*1e10), rtrunc,rsize,radii_h, galcen[ii],np.log10(frestor_vir*1e10),np.log10(frestor_re*1e10))
 
         ii += 1
         #break
